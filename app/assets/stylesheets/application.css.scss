@@ -17,14 +17,11 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 
-.navbar {
-  //Gradient provided by @_ighosh at uiGradients.com
-  background-color: #4158D0;
-    background-image: -webkit-linear-gradient(313deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-    background-image: -moz-linear-gradient(313deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-    background-image: -o-linear-gradient(313deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-}
+.home-callout, .navbar {
+  background: #AAFFA9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #11FFBD, #AAFFA9);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #11FFBD, #AAFFA9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}    
 .navbar {
   border: none;
 }
@@ -43,3 +40,47 @@
   color: white;
   opacity: 0.75;
 }
+
+.home-callout {
+  margin-top: -20px;
+  padding-bottom: 100px;
+  padding-top: 50px;
+}
+
+.btn-new-link {
+  color: black;
+}
+.btn-new-link:hover {
+  color: black;
+  opacity: 0.90;
+  text-decoration: none;
+}
+// Home page styles
+.home-callout .home-brand-message {
+    color: #555;
+}
+.plusbutton {
+  
+}
+
+// Button Sizes
+.btn-lrg {
+  font-size: 120px;
+  width: 290px;
+  
+}
+
+/*Bootstrap button outline override*/
+.btn-outline {
+    background-color: transparent;
+    border-color: black;
+    color: inherit;
+    transition: all .5s;
+    
+}
+
+
+
+
+
+

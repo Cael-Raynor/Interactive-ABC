@@ -4,4 +4,10 @@ class PagesController < ApplicationController
     
     def lessons
     end
+    
+    def classroom
+    end
+    
+    def new
+    end
 end

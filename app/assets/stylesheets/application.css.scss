@@ -18,9 +18,9 @@
 @import 'bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-//gradient
+
 .home-callout, .navbar {
- background: #3CA55C;  /* fallback for old browsers */
+ background: #3CA55C; 
 }  
 
 .navbar {
@@ -35,13 +35,13 @@
 .navbar-default .navbar-nav > li > a {
   color: white;
 }
-//change this to match colour above
+
 .navbar-default .navbar-brand:hover {
   color: white;
   opacity: 0.75;
   text-decoration: underline;
 }
-//change this to match colour above
+
 .navbar-default .navbar-nav > li > a:hover {
   color: white;
   opacity: 0.75;
@@ -74,6 +74,9 @@
   font-family: 'Montserrat', sans-serif;
 }
 
+
+//------------------LESSONS.HTML.ERB-------------------//
+
 // Button Sizes
 .btn-lrg {
   font-size: 120px;
@@ -90,7 +93,10 @@
     
 }
 
-// Boxes in classroom (Unit and Planner)
+
+//------------------CLASSROOM.HTML.ERB-------------------//
+
+//////////////classroom boxes//////////////
 .unitplanner {
   Height: 200px;
   width: 500px;
@@ -108,67 +114,19 @@
   text-align: a;
 }
 
-#draggable {
-    width: 200px;
-    height: 20px;
-    text-align: center;
-    background: white;
-  }
 
-.dropzone {
-  width: 300px;
-  height: 40px;
-  background: blueviolet;
-  margin-bottom: 10px;
-  padding: 10px; 
-}
+//------------------NEW.HTML.ERB-------------------//
 
-//Resizable menu start
-#container {
-  position: absolute;
-  margin: 0;
-  height: 100%;
-  width: 100%;
-}
-#resizable {
-  display: block;
-  font-size: 9pt;
-  //position: absolute;
-  bottom: 50px;
-  left: 20px;
-  padding: 10px;
-  min-width: 0;
-  border: solid 1px black;
-  width: 400px;
-  overflow-x: auto;
-  overflow-y: hidden;
-  top: -21px;                  // makes the height the same on both screen
-  position: relative; left: 20px;
-}
-#rsz {
-  
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 20px;
-  height: 20px;
-  background-color: rgba(255, 0, 0, 0.5);
-}
-#original {}
-//resizable menu end
-
-//Move Div start
+///////////////css for canvas////////////////
 #mydiv {
   position: absolute;
   z-index: 9;
   text-align: center;
   width: 500;
   height: 700;
-  left: -4px;
 }
 
 #mydivheader {
-  //padding: 10px;
   cursor: move;
   z-index: 10;
   color: #fff;
@@ -180,64 +138,65 @@
   position: absolute;
   bottom: 50px;
   left: -6px; // KEEP 
-//  padding: 10px;
   min-width: 0;
   border: solid 1px black;
   width: 600px;
   // overflow-x: auto; keep for now
   // overflow-y: hidden;
-  top: -641px;       
- 
-            // makes the height the same on both screen
+  top: -641px;    
+   resize:di;
+  overflow:auto; 
+   
   
 }
-// height from bottom to nav bar is 700px
 
-
-//CSS LIB FOR RESIZABLE 
-#wrapper {
-    min-height:100%;
-    min-width:100%;
-    position:relative;
+////////////////css for resizable side menu///////////////////
+.row {
+  width: 100%;
+  
+}
+.contain {
+  right: -15px; 
 }
 
 .contain {
-    display: flex;
-    position: relative;
-    bottom:20px;
-    right:15px;
-
-  /* Misc */
-
-  height: 700px;
-  // width: 70%;
-  // box-sizing: border-box;
-  // position:relative; left:25.6vw;
+  display: flex;
+  position: relative;
+  bottom: 20px;
+  height: 800px;
+  
 }
 .container__left {
-    /* Initially, the left takes 3/4 width */
-    width: 75%;
-    box-sizing: border-box;
-    /* Misc */
-    align-items: center;
-    display: flex;
-    justify-content: center;
+  /* Initially, the left takes 3/4 width */
+  width: 75%;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
+
 .resizer {
-    background-color: #cbd5e0;
-    cursor: ew-resize;
-    height: 100%;
-    width: 2px;
-    
+  background-color: #cbd5e0;
+  cursor: ew-resize;
+  height: 100%;
+  width: 2px;
 }
 .container__right {
-    /* Take the remaining width */
-    flex: 1;
-    border: 2px solid #cbd5e0;
-    /* Misc */
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    background-color: #9c9863;
-    left: 1021vw;
+  /* Take the remaining width */
+  flex: 1;
+  /* Misc */
+  //align-items: center;
+  display: flex;
+  //justify-content: center;
+  background-color: #9c9863;
+  z-index: 11;
+}
+
+.placeholder {
+  border: solid 1px black;
+  background-color: red;
+  height: 30px;
+  position: relative;
+  right: -10px;
+  top: 10px;
 }

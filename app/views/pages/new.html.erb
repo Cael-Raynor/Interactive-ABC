@@ -12,9 +12,11 @@
         </div>
       </div>
     </div>
-    <div id="mydiv" >
-      <div id="mydivheader" class="dropzone"></div>
+    <div id="drag" class="draggable dropzone">
     </div>
+    <!--<div id="mydiv" >-->
+    <!--  <div id="mydivheader" class="dropzone"></div>-->
+    <!--</div>-->
   </div>
 </div>
 
@@ -188,108 +190,93 @@ interact('.drag-drop')
 </script>
 
 <!--JavaScript for draggable div-->
-<script>
+<!--<script>-->
 
  // Make the DIV element draggable:
- dragElement(document.getElementById("mydiv"));
+<!-- dragElement(document.getElementById("mydiv"));-->
 
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "header")) {
+<!--function dragElement(elmnt) {-->
+<!--  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;-->
+<!--  if (document.getElementById(elmnt.id + "header")) {-->
     // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  } else {
+<!--    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;-->
+<!--  } else {-->
     // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
+<!--    elmnt.onmousedown = dragMouseDown;-->
+<!--  }-->
 
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
+<!--  function dragMouseDown(e) {-->
+<!--    e = e || window.event;-->
+<!--    e.preventDefault();-->
     // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
+<!--    pos3 = e.clientX;-->
+<!--    pos4 = e.clientY;-->
+<!--    document.onmouseup = closeDragElement;-->
     // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
+<!--    document.onmousemove = elementDrag;-->
+<!--  }-->
 
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
+<!--  function elementDrag(e) {-->
+<!--    e = e || window.event;-->
+<!--    e.preventDefault();-->
     // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
+<!--    pos1 = pos3 - e.clientX;-->
+<!--    pos2 = pos4 - e.clientY;-->
+<!--    pos3 = e.clientX;-->
+<!--    pos4 = e.clientY;-->
     // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
+<!--    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";-->
+<!--    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";-->
+<!--  }-->
 
-  function closeDragElement() {
+<!--  function closeDragElement() {-->
     // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-</script>
+<!--    document.onmouseup = null;-->
+<!--    document.onmousemove = null;-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
  
 <!--Hides scrollbar-->
 <style>
+
  body {
   overflow: hidden; /* Hide scrollbars */
  }
 </style>
 
 <style>
-  #outer-dropzone {
-  height: 140px;
+#drag {
+    cursor: move;
+  z-index: 10;
+  color: #fff;
+  height: 300px; 
+  margin-top: -3px;
+  position:relative; right:16px;
+  display: block;
+  font-size: 9pt;
+  position: absolute;
+  bottom: 50px;
+  left: 10px; // KEEP 
+  min-width: 0;
+  border: solid 1px black;
+  width: 600px;
+  touch-action: none;
+  user-select: none;
+  transform: translate(0px, 0px);
+  position: relative;
+  top: -600px;
 }
-
-#inner-dropzone {
-  height: 80px;
-}
-
-/*.dropzone {*/
-  /*background-color: #bfe4ff;*/
-  /*border: dashed 4px transparent;*/
-  /*border-radius: 4px;*/
-  /*margin: 10px auto 30px;*/
-  /*padding: 10px;*/
-  /*width: 80%;*/
-  /*transition: background-color 0.3s;*/
-/*}*/
-
-/*.drop-active {*/
-/*  border-color: #aaa;*/
-/*}*/
-
-/*.drop-target {*/
-/*  background-color: #29e;*/
-/*  border-color: #fff;*/
-/*  border-style: solid;*/
-/*}*/
 
 .drag-drop {
   display: inline-block;
-  min-width: 40px;
+  min-width: 80px;
+  max-width: 80px;
   padding: 2em 0.5em;
   margin: 1rem 0 0 1rem;
   height: 10%;
   color: #fff;
   background-color: #29e;
-  border: solid 2px #fff;
   position: inherit;
 
-/*  touch-action: none;*/
-/*  transform: translate(0px, 0px);*/
-
-/*  transition: background-color 0.3s;*/
-/*}*/
-
-/*.drag-drop.can-drop {*/
-/*  color: #000;*/
-/*  background-color: #4e4;*/
-/*}*/
 </style>

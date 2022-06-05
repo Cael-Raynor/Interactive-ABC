@@ -7,12 +7,12 @@
         </div>
         <div class="resizer" id="dragMe"></div>
         <div class="container__right">
-           <div id="yes-drop" class="drag-drop">Drag Me!</div>  
+           <div id="yes-drop" class="drag-drop TTest">Drag Me!</div>  
         </div>
         </div>
       </div>
     </div>
-    <div id="drag" class="draggable dropzone">
+    <div id="drag" class="resize-drag dropzone">
     </div>
     <!--<div id="mydiv" >-->
     <!--  <div id="mydivheader" class="dropzone"></div>-->
@@ -86,11 +86,18 @@ const mouseUpHandler = function () {
 <!--DragDrop from interactjs-->
 <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
 <script>
+function positionElement(el, x, y) {
+  el.style.position = 'absolute';
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+}
+
+const box = document.getElementById('yes-drop');
 // target elements with the "draggable" class
 interact('.draggable')
   .draggable({
     // enable inertial throwing
-    inertia: true,
+    inertia: false,
     // keep the element within the area of it's parent
     modifiers: [
       interact.modifiers.restrictRect({
@@ -142,7 +149,7 @@ interact('.dropzone').dropzone({
   // only accept elements matching this CSS selector
   accept: '#yes-drop',
   // Require a 75% element overlap for a drop to be possible
-  overlap: 0.75,
+  overlap: 1,
 
   // listen for drop related events:
 
@@ -163,21 +170,28 @@ interact('.dropzone').dropzone({
     // remove the drop feedback style
     event.target.classList.remove('drop-target')
     event.relatedTarget.classList.remove('can-drop')
-    event.relatedTarget.textContent = 'Dragged out'
+    event.relatedTarget.textContent = 'Dragged out'    
+   
+
   },
   ondrop: function (event) {
+   
     event.relatedTarget.textContent = 'Dropped'
+    
+    // $('.resize-drag').append($('.TTest'));
+     
   },
   ondropdeactivate: function (event) {
     // remove active dropzone feedback
     event.target.classList.remove('drop-active')
     event.target.classList.remove('drop-target')
+
   }
 })
 
 interact('.drag-drop')
   .draggable({
-    inertia: true,
+    inertia: false,
     modifiers: [
       interact.modifiers.restrictRect({
         endOnly: true
@@ -186,6 +200,65 @@ interact('.drag-drop')
     autoScroll: true,
     // dragMoveListener from the dragging demo above
     listeners: { move: dragMoveListener }
+  })
+</script>
+<script>
+    interact('.resize-drag').resizable({
+    // resize from all edges and corners
+    edges: { left: false, right: true, bottom: true, top: false },
+    listeners: {
+      move (event) {
+        var target = event.target
+        var x = (parseFloat(target.getAttribute('data-x')) || 0)
+        var y = (parseFloat(target.getAttribute('data-y')) || 0)
+
+        // update the element's style
+        target.style.width = event.rect.width + 'px'
+        target.style.height = event.rect.height + 'px'
+
+        // translate when resizing from top or left edges
+        x += event.deltaRect.left
+        y += event.deltaRect.top
+
+        target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
+
+        target.setAttribute('data-x', x)
+        target.setAttribute('data-y', y)
+        target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+      }
+    },
+    modifiers: [
+      // keep the edges inside the parent
+      interact.modifiers.restrictEdges({
+        outer: 'parent'
+      }),
+
+      // minimum size
+      interact.modifiers.restrictSize({
+        min: { width: 100, height: 50 }
+      }),
+      
+      interact.modifiers.aspectRatio({
+      // make sure the width is always double the height
+      ratio: 2,
+      // also restrict the size by nesting another modifier
+      modifiers: [
+        interact.modifiers.restrictSize({ max: 'parent' }),
+      ],
+    }),
+    ],
+
+    inertia: false
+  })
+  .draggable({
+    listeners: { move: window.dragMoveListener },
+    inertia: false,
+    modifiers: [
+      interact.modifiers.restrictRect({
+        restriction: 'parent',
+        endOnly: true
+      })
+    ]
   })
 </script>
 
@@ -245,38 +318,3 @@ interact('.drag-drop')
  }
 </style>
 
-<style>
-#drag {
-    cursor: move;
-  z-index: 10;
-  color: #fff;
-  height: 300px; 
-  margin-top: -3px;
-  position:relative; right:16px;
-  display: block;
-  font-size: 9pt;
-  position: absolute;
-  bottom: 50px;
-  left: 10px; // KEEP 
-  min-width: 0;
-  border: solid 1px black;
-  width: 600px;
-  touch-action: none;
-  user-select: none;
-  transform: translate(0px, 0px);
-  position: relative;
-  top: -600px;
-}
-
-.drag-drop {
-  display: inline-block;
-  min-width: 80px;
-  max-width: 80px;
-  padding: 2em 0.5em;
-  margin: 1rem 0 0 1rem;
-  height: 10%;
-  color: #fff;
-  background-color: #29e;
-  position: inherit;
-
-</style>
